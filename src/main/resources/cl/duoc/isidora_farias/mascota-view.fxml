@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cl.duoc.pataverde.controller.MascotaController"
+            prefWidth="950" prefHeight="560">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- ========== ARRIBA: título ========== -->
+    <top>
+        <Label text="Registro de pacientes"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;">
+            <BorderPane.margin>
+                <Insets bottom="10"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+
+    <!-- ========== IZQUIERDA: formulario ========== -->
+    <left>
+        <VBox spacing="10" prefWidth="330">
+
+            <GridPane hgap="10" vgap="10">
+                <Label text="Tipo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cbTipo" promptText="Seleccione..." onAction="#cambiarTipo"
+                          GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombre" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Edad:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEdad" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Peso (kg):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPeso" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Datos del perro -->
+            <VBox fx:id="boxPerro" spacing="8"
+                  style="-fx-border-color: lightgray; -fx-padding: 10;">
+                <Label text="Datos del perro" style="-fx-font-weight: bold;"/>
+                <HBox spacing="10">
+                    <Label text="Raza:"/>
+                    <TextField fx:id="txtRaza"/>
+                </HBox>
+                <CheckBox fx:id="chkVacunado" text="Vacunado"/>
+                <CheckBox fx:id="chkAdopcion" text="Disponible para adopción"/>
+            </VBox>
+
+            <!-- Datos del gato -->
+            <VBox fx:id="boxGato" spacing="8"
+                  style="-fx-border-color: lightgray; -fx-padding: 10;">
+                <Label text="Datos del gato" style="-fx-font-weight: bold;"/>
+                <CheckBox fx:id="chkExterior" text="Vive en exterior"/>
+            </VBox>
+
+            <Button text="Registrar" onAction="#registrar"/>
+        </VBox>
+    </left>
+
+    <!-- ========== CENTRO: tabla + eliminar ========== -->
+    <center>
+        <VBox spacing="10">
+            <BorderPane.margin>
+                <Insets left="15"/>
+            </BorderPane.margin>
+
+            <TableView fx:id="tablaMascotas" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colTipo" text="Tipo" prefWidth="80"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                    <TableColumn fx:id="colEdad" text="Edad" prefWidth="70"/>
+                    <TableColumn fx:id="colPeso" text="Peso (kg)" prefWidth="90"/>
+                    <TableColumn fx:id="colCosto" text="Costo consulta" prefWidth="130"/>
+                </columns>
+            </TableView>
+
+            <Button text="Eliminar" onAction="#eliminar"/>
+        </VBox>
+    </center>
+
+    <!-- ========== ABAJO: área de mensajes ========== -->
+    <bottom>
+        <Label fx:id="lblMensaje" style="-fx-font-weight: bold;">
+            <BorderPane.margin>
+                <Insets top="10"/>
+            </BorderPane.margin>
+        </Label>
+    </bottom>
+
+</BorderPane>
